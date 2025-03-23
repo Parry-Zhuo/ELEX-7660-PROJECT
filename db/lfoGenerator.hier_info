@@ -1,0 +1,56 @@
+|lfoGenerator
+CLOCK_50 => CLOCK_50.IN1
+enc1_a => ~NO_FANOUT~
+enc1_b => ~NO_FANOUT~
+enc2_a => ~NO_FANOUT~
+enc2_b => ~NO_FANOUT~
+s1 => reset_n.IN1
+GPIO_0[0] << <GND>
+GPIO_0[1] << <GND>
+GPIO_0[2] << <GND>
+GPIO_0[3] << <GND>
+GPIO_0[4] << lcd_controller:lcdInst_0.RS
+GPIO_0[5] << lcd_controller:lcdInst_0.RW
+GPIO_0[6] << lcd_controller:lcdInst_0.E
+GPIO_0[7] << lcd_controller:lcdInst_0.data
+GPIO_0[8] << lcd_controller:lcdInst_0.data
+GPIO_0[9] << lcd_controller:lcdInst_0.data
+GPIO_0[10] << lcd_controller:lcdInst_0.data
+GPIO_0[11] << lcd_controller:lcdInst_0.data
+GPIO_0[12] << lcd_controller:lcdInst_0.data
+GPIO_0[13] << lcd_controller:lcdInst_0.data
+GPIO_0[14] << lcd_controller:lcdInst_0.data
+GPIO_0[15] << <GND>
+
+
+|lfoGenerator|lcd_controller:lcdInst_0
+CLOCK_50 => clk_div_count[0].CLK
+CLOCK_50 => clk_div_count[1].CLK
+CLOCK_50 => clk_div_count[2].CLK
+CLOCK_50 => clk_div_count[3].CLK
+CLOCK_50 => clk_div_count[4].CLK
+CLOCK_50 => clk_div_count[5].CLK
+CLOCK_50 => clk_div_count[6].CLK
+CLOCK_50 => clk_div_count[7].CLK
+CLOCK_50 => clk_div_count[8].CLK
+CLOCK_50 => clk_div_count[9].CLK
+CLOCK_50 => clk_div_count[10].CLK
+CLOCK_50 => clk_div_count[11].CLK
+CLOCK_50 => clk_div_count[12].CLK
+CLOCK_50 => clk_div_count[13].CLK
+CLOCK_50 => clk_div_count[14].CLK
+CLOCK_50 => clk_div_count[15].CLK
+rst <= <GND>
+RS <= RS~reg0.DB_MAX_OUTPUT_PORT_TYPE
+RW <= RW~reg0.DB_MAX_OUTPUT_PORT_TYPE
+E <= E~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[0] <= data[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[1] <= data[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[2] <= data[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[3] <= data[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[4] <= data[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[5] <= data[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[6] <= data[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data[7] <= data[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
