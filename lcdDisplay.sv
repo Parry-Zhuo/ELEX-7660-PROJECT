@@ -31,7 +31,7 @@ module lcdDisplay(
     } state_t;
 
     state_t state, next_state;
-    /*Loading data block
+    /*Loading data block triggered at posedge E
     UPON a rising edge of E, data and states are transitioned to next data/state
     changed to provide stable signal when E becomes a falling edge.
     */
@@ -47,30 +47,32 @@ module lcdDisplay(
             case (state)
                 INIT: begin// Wait for power stabilization
                     //Wait 15ms - if VDD>4.5V
-                    //E    <= 1;//my hope with this is that it triggers the timer
+
                 end FUNCTION_SET: begin// set to 8 bit length
                     RS   <= 0;
                     RW   <= 0;
-//                    data <= 8'b0011_0000;
+                    data <= 8'b0011_0000;
                 end DISPLAY_CONTROL: begin
                     RS   <= 0;
                     RW   <= 0;
-//                    data <= 8'b0000_1100; // Display ON, Cursor OFF, Blink OFF
+                    data <= 8'b0000_1110; // Display ON, Cursor OFF, Blink OFF
                 end ENTRY_MODE: begin
                     RS   <= 0;
                     RW   <= 0;
-//                    data <= 8'b0000_0110; // Increment mode
+                    data <= 8'b0000_0110; // Increment mode, increments address by 1, and shift cursor when writing
                 end CLEAR_DISPLAY: begin
                     RS   <= 0;
                     RW   <= 0;
-//                    data <= 8'b0000_0001; // Clear display
+                    data <= 8'b0000_0001; // Clear display <-- need more review
                 end READY: begin
                     // Ready for data input load data in
+						  RW   <= 0;
                     RS   <= 1;// ensure we are in write mode always
-//                    data <= 8'b0000_0101;  /* should correspond with P*/;
+                    data <= 8'b0000_0101;  /* should correspond with P, it should continuously print p over and over again*/;
                 end WRITE_DATA: begin
                     RS   <= 1;// ensure we are in write mode always
                     RW   <= 0;
+						  data <= 8'b0000_0101;
                     // Transition back to READY
                 end default: begin
 
@@ -124,15 +126,14 @@ module lcdDisplay(
         e = 1// creates rising edge to trigger next sequence of data and counters
    */
 	always_ff @( posedge clk, negedge rst) begin
-		 if (~rst) begin
+		 if (~rst) begin 
 			 count <= next_count;
 			 state <=INIT;
 			 E <= 1;
-//			 RW <=0;
-//			 RS <=0;
+
 		 end else begin
-		 
-			 data = count;  //stimulation purposes only
+//			 data = 8'b1000_0001;
+//			 data = count;  //stimulation purposes only
 			 state <=next_state;
 			 count <= count - 1'b1;
 			 if(count < (next_count >> 1) && count > 0) begin
@@ -146,6 +147,11 @@ module lcdDisplay(
 		 end
 	end
 
-
-
 endmodule
+
+/*PIN CHECKOUT
+
+data = 8'b1000_0001;
+
+*/
+
