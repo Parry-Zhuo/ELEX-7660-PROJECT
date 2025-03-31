@@ -4,8 +4,8 @@ module lcdDisplay_tb ;
     	logic        rst = 1;      // Reset signal,  GPIO_0[3]
     	logic        RS;    // Register Select GPIO_0[4]
     	logic        RW;     // Read/Write GPIO_0[5]
-    	logic        E;         //The LCD reads data only on the falling edge of E (from HIGH â LOW). For bits DB7-0:   GPIO_0[6]
-    	logic [12:0]  data;       // Data bus GPIO_0[7:15], NOTE* data is used for debugging purposes in stimulation and has different purposes for actual implementation
+    	logic        E;         //The LCD reads data only on the falling edge of E (from HIGH → LOW). For bits DB7-0:   GPIO_0[6]
+    	logic [12:0]  data;       // Data bus GPIO_0[7:15]   bcitid uut1 (.*);
    
 
 
@@ -23,7 +23,7 @@ module lcdDisplay_tb ;
 		state 1 - togglePoint = 2000/2 posedge  + 1 negedge
 		state 2 - togglePoint = 513/2 posedge + 1 negedge
 		state 3 - togglePoint = 150/2 posedge + 1 negedge
-
+	This will be checked by temporarily putting COUNTER INTO DATA to verify the correct waveforms
 	*/
 	logic tb_fail = 0 ;	
 	initial begin
@@ -40,19 +40,19 @@ module lcdDisplay_tb ;
         // Run simulation
 
 		//state 1 - togglePoint = 2000/2 posedge  + 1 negedge
-		repeat(2000/2) @(posedge clk);
+		@(posedge E)
 		@(negedge clk);
-		tb_fail |=(E);
+		tb_fail |=(~E);
 
 //		//state 2 - togglePoint = 513/2 posedge + 1 negedge
-		repeat(513/2) @(posedge clk);
+		@(posedge E)
 		@(negedge clk);
-		tb_fail |=(E);
+		tb_fail |=(~E);
 //
 //		//state 3 - togglePoint = 150/2 posedge + 1 negedge
-		repeat(150/2) @(negedge clk);
+		@(posedge E)
 		@(negedge clk);
-		tb_fail |=(E);
+		tb_fail |=(~E);
 
 		repeat(3000) @ (negedge clk);
 
@@ -66,6 +66,6 @@ module lcdDisplay_tb ;
     end
 
    	initial clk = 0;
-	always #5120 clk = ~clk; // 10.24 Î¼s clock
+	always #5120 clk = ~clk; // 10.24 μs clock
 
 endmodule
