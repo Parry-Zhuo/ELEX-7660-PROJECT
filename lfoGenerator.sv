@@ -47,8 +47,4 @@ module lfoGenerator (
     );
 
 
-
-
-
-
 endmodule
