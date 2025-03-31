@@ -1,0 +1,17 @@
+// bcit_tb.sv - ELEX 7660 201710 testbench for lab1 bcitid.sv
+// Ed.Casas 2017-1-9
+
+module lfoGeneratorLCD_tb ;
+
+//first thing I will do is test the enable pin oscillating
+	logic reset_n;           // Reset signal
+	logic lcd_RS, lcd_RW, lcd_E;   // LCD control signals
+	logic [7:0] lcd_data;          // LCD data bus
+
+
+	logic lcd_RS, lcd_RW, lcd_E;
+	logic ADC_SDO = 0;
+
+	lfoGenLCD lcd_UT_0(.*);
+
+endmodule

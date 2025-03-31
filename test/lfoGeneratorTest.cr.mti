@@ -1,0 +1,22 @@
+Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv {1 {vlog -work work -sv -stats=none Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module lfoGenerator
+
+Top level modules:
+	lfoGenerator
+
+} {} {}} Z:/LV6/ELEX7660/lfoGenerator/lcdDisplay.sv {1 {vlog -work work -sv -stats=none {Z:\LV6\ELEX7660\lfoGenerator\lcdDisplay.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module lcdDisplay
+
+Top level modules:
+	lcdDisplay
+
+} {} {}} Z:/LV6/ELEX7660/lfoGenerator/test/lfoGeneratorLCD_test.sv {1 {vlog -work work -sv -stats=none Z:/LV6/ELEX7660/lfoGenerator/test/lfoGeneratorLCD_test.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module lfoGenerator_tb
+
+Top level modules:
+	lfoGenerator_tb
+
+} {} {}}

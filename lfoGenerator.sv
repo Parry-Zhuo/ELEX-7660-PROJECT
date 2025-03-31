@@ -12,41 +12,43 @@ module lfoGenerator (
     (* altera_attribute = "-name WEAK_PULL_UP_RESISTOR ON" *)
     input logic enc2_a, enc2_b,  // Encoder 2 pins
     input logic s1,              // Active low pushbutton (Reset)
-    output logic [15:0] GPIO_0   // GPIO pins for DAC SPI + LCD
+    output logic [15:3] GPIO_0   // GPIO pins for DAC SPI + LCD
 );
 
     // Internal signals
-    logic reset_n;           // Reset signal
-    logic DAC_CSB, DAC_SCLK, DAC_DIN; // SPI signals
-    logic lcd_RS, lcd_RW, lcd_E;   // LCD control signals
-    logic [7:0] lcd_data;          // LCD data bus
+	logic reset_n;           // Reset signal
+	logic lcd_RS, lcd_RW, lcd_E;   // LCD control signals
+	logic [7:0] lcd_data;          // LCD data bus
+   logic [15:0] clk_div_count; // count used to divide clock
 
     // Assign GPIO outputs
-    always_comb begin
-        reset_n = s1; // Implement reset button on S1
-        
-        // DAC SPI Communication signals
-        GPIO_0[0] = DAC_CSB;
-        GPIO_0[1] = DAC_SCLK;
-        GPIO_0[2] = DAC_DIN;
-        
-        // LCD Control signals
-        GPIO_0[4] = lcd_RS;
-        GPIO_0[5] = lcd_RW;
-        GPIO_0[6] = lcd_E;
-        
-        // LCD Data Bus (GPIO_7 to GPIO_15)
-        GPIO_0[15:7] = lcd_data;
+	always_comb begin
+		reset_n = s1; // Implement reset button on S1
+      
+//		GPIO_0[3] = lcd_reset;       // Reset signal,  GPIO_0[3]
+		GPIO_0[4] = lcd_RS;        // Register Select GPIO_0[4]
+		GPIO_0[5] = lcd_RW;        // Read/Write GPIO_0[5]
+		GPIO_0[6] = lcd_E;    //The LCD reads data only on the falling edge of E (from HIGH → LOW). For bits DB7-0:   GPIO_0[6]
+		GPIO_0[15:7] = lcd_data; // LCD Data Bus (GPIO_7 to GPIO_15)
     end
+	 
+    always_ff @(posedge CLOCK_50) 
+        clk_div_count <= clk_div_count + 1'b1 ;
 
+    assign clk = clk_div_count[9];//50M/2^9 is approx 100KHz, o97656.25
     // Instantiate LCD Controller
-    lcd_controller lcdInst_0 (
-        .CLOCK_50(CLOCK_50), 
+    lcdDisplay lcdInst_0 (
+        .clk(clk), 
         .rst(reset_n),     // Use internal reset signal
         .RS(lcd_RS),       
         .RW(lcd_RW),
         .E(lcd_E), 
         .data(lcd_data)    // 8-bit data bus
     );
+
+
+
+
+
 
 endmodule

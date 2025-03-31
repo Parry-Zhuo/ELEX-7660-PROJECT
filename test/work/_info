@@ -1,0 +1,115 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1/modelsim_ase/win32aloem
+vlcdDisplay
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 !s110 1743381731
+!i10b 1
+!s100 dKLhHQfjBcj;Ok<k[Ho8K1
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IK>5lR0nB>6N_SZ5@OnA6Y3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z4 dZ:/LV6/ELEX7660/lfoGenerator/test
+w1743378020
+8Z:\LV6\ELEX7660\lfoGenerator\lcdDisplay.sv
+FZ:\LV6\ELEX7660\lfoGenerator\lcdDisplay.sv
+!i122 401
+L0 10 170
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1743381731.000000
+!s107 Z:\LV6\ELEX7660\lfoGenerator\lcdDisplay.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:\LV6\ELEX7660\lfoGenerator\lcdDisplay.sv|
+!i113 1
+Z7 o-work work -sv
+Z8 tCvgOpt 0
+nlcd@display
+vlcdDisplay_tb
+R0
+!s110 1743381730
+!i10b 1
+!s100 :eLI6oacN;Hh:N6An1c9?0
+R2
+I7b2P=MQ`ID[8XHI]iG=;d2
+R3
+S1
+R4
+w1743381368
+8Z:\LV6\ELEX7660\lfoGenerator\test\lcdDisplay_tb.sv
+FZ:\LV6\ELEX7660\lfoGenerator\test\lcdDisplay_tb.sv
+!i122 399
+L0 1 71
+R5
+r1
+!s85 0
+31
+!s108 1743381729.000000
+!s107 Z:\LV6\ELEX7660\lfoGenerator\test\lcdDisplay_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:\LV6\ELEX7660\lfoGenerator\test\lcdDisplay_tb.sv|
+!i113 1
+R7
+R8
+nlcd@display_tb
+vlfoGenerator
+R0
+!s110 1743381732
+!i10b 1
+!s100 ^6kRgnf9Mmjd0K1n:Yln@0
+R2
+Ia:GJX3SI<ZT3D_iLlY^<L2
+R3
+S1
+R4
+w1743315851
+8Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv
+FZ:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv
+!i122 402
+L0 8 47
+R5
+r1
+!s85 0
+31
+R6
+!s107 Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv|
+!i113 1
+R7
+R8
+nlfo@generator
+vlfoGenerator_tb
+R0
+R1
+!i10b 1
+!s100 6SDi^me__^bh?bRle]AhF0
+R2
+IE848Kg1jXB3[QohDe78RG2
+R3
+S1
+R4
+w1743307145
+8Z:/LV6/ELEX7660/lfoGenerator/test/lfoGeneratorLCD_test.sv
+FZ:/LV6/ELEX7660/lfoGenerator/test/lfoGeneratorLCD_test.sv
+!i122 400
+L0 2 31
+R5
+r1
+!s85 0
+31
+!s108 1743381730.000000
+!s107 Z:/LV6/ELEX7660/lfoGenerator/test/lfoGeneratorLCD_test.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:/LV6/ELEX7660/lfoGenerator/test/lfoGeneratorLCD_test.sv|
+!i113 1
+R7
+R8
+nlfo@generator_tb
