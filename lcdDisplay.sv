@@ -20,7 +20,7 @@ module lcdDisplay(
     logic [12:0] count, next_count;
 
     // State machine states
-    typedef enum logic [2:0] {
+    typedef enum logic [8:0] {
         INIT,
         FUNCTION_SET,
         DISPLAY_CONTROL,
@@ -64,11 +64,12 @@ module lcdDisplay(
                     RS   <= 0;
                     RW   <= 0;
                     data <= 8'b0000_0001; // Clear display <-- need more review
-                end READY: begin
+					end READY: begin
                     // Ready for data input load data in
+						  RS   <= 1;// ensure we are in write mode always
 						  RW   <= 0;
-                    RS   <= 1;// ensure we are in write mode always
                     data <= 8'b0000_0101;  /* should correspond with P, it should continuously print p over and over again*/;
+//						  data <= 8'b1000_0000;
                 end WRITE_DATA: begin
                     RS   <= 1;// ensure we are in write mode always
                     RW   <= 0;
@@ -80,7 +81,6 @@ module lcdDisplay(
             endcase
         end
     end
-
 /*State changer*/
 	always_comb begin
 		if (count > 0) begin
@@ -107,15 +107,25 @@ module lcdDisplay(
 	end
 	
 	always_comb begin
+//		 case (state)
+//			  INIT:           next_count = 2000; // 150ms * 1.25
+//			  FUNCTION_SET:   next_count = 513;  // 4.1ms * 1.25
+//			  DISPLAY_CONTROL:next_count = 150;  // 1.5ms delay
+//			  ENTRY_MODE:     next_count = 150;
+//			  CLEAR_DISPLAY:  next_count = 150;
+//			  READY:          next_count = 150;
+//			  WRITE_DATA:     next_count = 150;
+//			  default:        next_count = 150;
+//		 endcase
 		 case (state)
-			  INIT:           next_count = 2000; // 150ms * 1.25
-			  FUNCTION_SET:   next_count = 513;  // 4.1ms * 1.25
-			  DISPLAY_CONTROL:next_count = 150;  // 1.5ms delay
-			  ENTRY_MODE:     next_count = 150;
-			  CLEAR_DISPLAY:  next_count = 150;
-			  READY:          next_count = 150;
-			  WRITE_DATA:     next_count = 150;
-			  default:        next_count = 150;
+//			  INIT:           next_count = 4000; // 150ms * 1.25
+//			  FUNCTION_SET:   next_count = 4000;  // 4.1ms * 1.25
+//			  DISPLAY_CONTROL:next_count = 4000;  // 1.5ms delay
+//			  ENTRY_MODE:     next_count = 4000;
+//			  CLEAR_DISPLAY:  next_count = 4000;
+//			  READY:          next_count = 4000;
+//			  WRITE_DATA:     next_count = 4000;
+			  default:        next_count = 8000;
 		 endcase
 	end
 	   /*
@@ -132,14 +142,14 @@ module lcdDisplay(
 			 E <= 1;
 
 		 end else begin
-//			 data = 8'b1000_0001;
+//			data <= 8'b1010_1010;
 //			 data = count;  //stimulation purposes only
 			 state <=next_state;
 			 count <= count - 1'b1;
 			 if(count < (next_count >> 1) && count > 0) begin
-				E <= 0;
+				E <= 1;
 			 end else if(count <= 0 )begin
-				E <=1;
+				E <=0;
 				count <= next_count;
 			 end else begin
 				E <=1;
@@ -154,4 +164,3 @@ endmodule
 data = 8'b1000_0001;
 
 */
-

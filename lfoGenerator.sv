@@ -12,13 +12,14 @@ module lfoGenerator (
     (* altera_attribute = "-name WEAK_PULL_UP_RESISTOR ON" *)
     input logic enc2_a, enc2_b,  // Encoder 2 pins
     input logic s1,              // Active low pushbutton (Reset)
-    output logic [15:3] GPIO_0   // GPIO pins for DAC SPI + LCD
+    output logic [17:3] GPIO_0   // GPIO pins for DAC SPI + LCD
+//	 output logic red, green, blue
 );
 
     // Internal signals
 	logic reset_n;           // Reset signal
 	logic lcd_RS, lcd_RW, lcd_E;   // LCD control signals
-	logic [7:0] lcd_data;          // LCD data bus
+	logic [0:7] lcd_Data;          // LCD data bus
    logic [15:0] clk_div_count; // count used to divide clock
 
     // Assign GPIO outputs
@@ -29,7 +30,12 @@ module lfoGenerator (
 		GPIO_0[4] = lcd_RS;        // Register Select GPIO_0[4]
 		GPIO_0[5] = lcd_RW;        // Read/Write GPIO_0[5]
 		GPIO_0[6] = lcd_E;    //The LCD reads data only on the falling edge of E (from HIGH → LOW). For bits DB7-0:   GPIO_0[6]
-		GPIO_0[15:7] = lcd_data; // LCD Data Bus (GPIO_7 to GPIO_15)
+		GPIO_0[15:8] = lcd_Data;// LCD Data Bus (GPIO_7 to GPIO_15)
+//		GPIO_0[15:8] = 8'b0101_0101;
+//		GPIO_0[15:8] = 8'b1010_1010;
+//		GPIO_0[7] = 0;
+//		GPIO_0[8] = 1;
+
     end
 	 
     always_ff @(posedge CLOCK_50) 
@@ -43,7 +49,7 @@ module lfoGenerator (
         .RS(lcd_RS),       
         .RW(lcd_RW),
         .E(lcd_E), 
-        .data(lcd_data)    // 8-bit data bus
+        .data(lcd_Data)    // 8-bit data bus
     );
 
 
