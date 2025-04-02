@@ -40,7 +40,7 @@ module lfoGenerator (
 	 
     always_ff @(posedge CLOCK_50) 
         clk_div_count <= clk_div_count + 1'b1 ;
-
+	 
     assign clk = clk_div_count[9];//50M/2^9 is approx 100KHz, o97656.25
     // Instantiate LCD Controller
     lcdDisplay lcdInst_0 (

@@ -18,7 +18,8 @@ module lcdDisplay(
 //    output logic [15:3] GPIO_0 //this should be in the top module.
 );
     logic [12:0] count, next_count;
-
+   logic [4:0] write_count; //
+	
     // State machine states
     typedef enum logic [4:0] {
         INIT,
@@ -29,8 +30,10 @@ module lcdDisplay(
 		  DISPLAY_OFF,
 		  DISPLAY_CLEAR,
         ENTRY_MODE,
+		  FUNCTION_SET,
         READY,
-        WRITE_DATA
+        WRITE_DATA,
+		  STOP
 		  
 //		  CLEAR_DISPLAY,       // ← Missing
 //		  ENTRY_SET_MODE,       // ← Missing
@@ -58,19 +61,26 @@ module lcdDisplay(
 						data <= 8'b0011_0000;// Function set (8-bit mode) x 3 times
 					end FUNCTION_SET2: begin
 					end FUNCTION_SET3: begin
-					end DISPLAY_CONTROL: begin
-						data <= 8'b0011_1100; // display lines, and char font
-					end DISPLAY_OFF: begin
-						 data <= 8'b0000_1000; 
+					end FUNCTION_SET: begin//Function set set 1,DL,N,F
+						data <= 8'b0011_1100; // (DL: 8-bit/4-bit),  (N: 2-line/1-line), (F: 5×10 dots/5×8 dots)
+					end DISPLAY_OFF: begin//Display ON/OFF 1xxx. display (D), cursor (C), and blinking of cursor (B) 
+						 data <= 8'b0000_1110; 
 					end DISPLAY_CLEAR: begin
-						data <= 8'b0000_0001; // Clear display <-- need more review
-					end ENTRY_MODE: begin
-						data <= 8'b0000_0111; // Increment mode, increments address by 1, and shift cursor
-					end READY: begin
+						data <= 8'b0000_0001; // Clear display
+					end ENTRY_MODE: begin// entry set MODE
+						data <= 8'b0000_0110;//assign curser moving direction and enable shift of display
+					end DISPLAY_CONTROL: begin//TEMPORARILY RETURN- HOME
+						data <= 8'b0000_0010; // 0 0 0 1 S/C R/L 0 0 – Shift entire display (S/C=1) or move cursor (S/C=0), direction by R/L (0=left, 1=right) without DDRAM change.
+					end READY: begin //LOADING data on POSEDGE on E
 						 RS <= 1;
-						 RW <= 0;
-						 data <= 8'b0000_0101; // Write data 'P'
-					end WRITE_DATA: begin
+//						 data <= 8'b0000_0101; // Write data 'P'
+						 data <= 8'b1111_1111; // Write data 'P'
+//						 data <= 8'b0000_0000;
+					end WRITE_DATA: begin // here the data should be stable to write into the LCD
+						 write_count <= write_count + 1;
+					end STOP: begin
+//						data <= 8'b0000_0000;
+						RS <= 0;
 					end default: begin
 					end
 			  endcase
@@ -88,10 +98,18 @@ module lcdDisplay(
 					FUNCTION_SET2:  next_state = FUNCTION_SET3;
 					FUNCTION_SET3:  next_state = DISPLAY_CONTROL;
 					DISPLAY_CONTROL:next_state = ENTRY_MODE;
-					ENTRY_MODE:     next_state = DISPLAY_CLEAR;
+					ENTRY_MODE:     next_state = FUNCTION_SET;
+					FUNCTION_SET:   next_state = DISPLAY_CLEAR;
 					DISPLAY_CLEAR:  next_state = READY;
 					READY:          next_state = WRITE_DATA;
-					WRITE_DATA:     next_state = READY;
+					WRITE_DATA: begin
+					    if (write_count < 4) begin
+							  next_state = READY;
+//							  write_count = write_count + 1;
+						 end else
+							  next_state = STOP; // Stay here to stop writing
+					
+					end STOP:     next_state = STOP;
 					default:        next_state = INIT;
 			  endcase
 		 end
@@ -116,7 +134,7 @@ module lcdDisplay(
 //			  CLEAR_DISPLAY:  next_count = 4000;
 //			  READY:          next_count = 4000;
 //			  WRITE_DATA:     next_count = 4000;
-			  default:        next_count = 4000;
+			  default:        next_count = 1200000;
 		 endcase
 	end
 	   /*
@@ -136,15 +154,17 @@ module lcdDisplay(
 //			 data = 8'b1000_0001;
 //			 data = count;  //stimulation purposes only
 			 state <=next_state;
-			 count <= count - 1'b1;
-			 if(count < (next_count >> 1) && count > 0) begin
-				E <= 0;
-			 end else if(count <= 0 )begin
-				E <=1;
-				count <= next_count;
-			 end else begin
-				E <=1;
-			 end
+//			 if(state != STOP) begin
+				 count <= count - 1'b1;
+				 if(count < (next_count >> 1) && count > 0) begin
+					E <= 0;
+				 end else if(count <= 0 )begin
+					E <=1;
+					count <= next_count;
+				 end else begin
+					E <=1;
+				 end
+//			 end
 		 end
 	end
 
