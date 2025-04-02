@@ -20,7 +20,7 @@ module lcdDisplay(
     logic [12:0] count, next_count;
 
     // State machine states
-    typedef enum logic [8:0] {
+    typedef enum logic [2:0] {
         INIT,
         FUNCTION_SET,
         DISPLAY_CONTROL,
@@ -68,8 +68,9 @@ module lcdDisplay(
                     // Ready for data input load data in
 						  RS   <= 1;// ensure we are in write mode always
 						  RW   <= 0;
+                    
                     data <= 8'b0000_0101;  /* should correspond with P, it should continuously print p over and over again*/;
-//						  data <= 8'b1000_0000;
+						  data <= 8'b1000_0000;
                 end WRITE_DATA: begin
                     RS   <= 1;// ensure we are in write mode always
                     RW   <= 0;
@@ -125,7 +126,7 @@ module lcdDisplay(
 //			  CLEAR_DISPLAY:  next_count = 4000;
 //			  READY:          next_count = 4000;
 //			  WRITE_DATA:     next_count = 4000;
-			  default:        next_count = 8000;
+			  default:        next_count = 4000;
 		 endcase
 	end
 	   /*
@@ -147,9 +148,9 @@ module lcdDisplay(
 			 state <=next_state;
 			 count <= count - 1'b1;
 			 if(count < (next_count >> 1) && count > 0) begin
-				E <= 1;
+				E <= 0;
 			 end else if(count <= 0 )begin
-				E <=0;
+				E <=1;
 				count <= next_count;
 			 end else begin
 				E <=1;
