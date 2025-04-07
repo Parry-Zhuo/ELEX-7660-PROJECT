@@ -22,6 +22,14 @@ module lfoGenerator (
 	logic [0:7] lcd_Data;          // LCD data bus
    logic [15:0] clk_div_count; // count used to divide clock
 
+	
+	logic [2:0] shape, depth;
+	logic [7:0] freq;
+	
+	
+	assign shape = 3'd1; // Example: 1 = SQUARE
+	assign depth = 3'd3; // Example: show 3 bullets
+	assign freq  = 8'd100; // Example: 100 BPM
     // Assign GPIO outputs
 	always_comb begin
 		reset_n = s1; // Implement reset button on S1
@@ -43,14 +51,20 @@ module lfoGenerator (
 	 
     assign clk = clk_div_count[9];//50M/2^9 is approx 100KHz, o97656.25
     // Instantiate LCD Controller
-    lcdDisplay lcdInst_0 (
-        .clk(clk), 
-        .rst(reset_n),     // Use internal reset signal
-        .RS(lcd_RS),       
-        .RW(lcd_RW),
-        .E(lcd_E), 
-        .data(lcd_Data)    // 8-bit data bus
-    );
+	lcdDisplay #(
+		 .MESSAGE_LENGTH(64) // Pass parameters if needed
+	) lcdInst_0 (
+		 .clk(clk),
+		 .rst(reset_n),
+		 .RS(lcd_RS),
+		 .RW(lcd_RW),
+		 .E(lcd_E),
+		 .data(lcd_Data),
+		 .shape(shape),     // ← these are your new signals
+		 .depth(depth),
+		 .freq(freq)
+	);
+
 
 
 endmodule

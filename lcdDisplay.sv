@@ -16,9 +16,11 @@ module lcdDisplay #(
     output logic        RS,        // Register Select GPIO_0[4]
     output logic        RW,        // Read/Write GPIO_0[5]
     output logic        E,         //The LCD reads data only on the falling edge of E (from HIGH → LOW). For bits DB7-0:   GPIO_0[6]
-    output logic [7:0]  data // Data bus for actual data
+    output logic [7:0]  data, // Data bus for actual data
 //	 output logic [12:0]  data //this is [12:0] to capture stimulation data
 //    output logic [15:3] GPIO_0 //this should be in the top module.
+	 input logic [2:0] shape, depth,
+	 input logic [7:0] freq
 );
     logic [12:0] count, next_count;
    logic [12:0] write_count; //
@@ -90,7 +92,7 @@ module lcdDisplay #(
 		8'h20, // [17] ' '
 		
 		// -----------------------------
-		// Line 4: "DEPTH: 10"
+		// Line 4: "DEPTH: XXX "
 		// -----------------------------
 		8'h20, // [17] ' '
 		8'h44, // [48] 'D'
@@ -99,9 +101,9 @@ module lcdDisplay #(
 		8'h54, // [51] 'T'
 		8'h48, // [52] 'H'
 		8'h3A, // [53] ':'
-		8'h31, // [55] '1'
-		8'h30, // [56] '0'
-		8'hFF, // [57] ' '
+		8'hDB, // [55] 'BOX'
+		8'hDB, // [56] 'BOX' // Alternative box8'hDB,
+		8'hDB, // [57] ' '
 		8'h20, // [58] ' '
 		8'h20, // [59] ' '
 		8'h20, // [60] ' '
@@ -111,6 +113,7 @@ module lcdDisplay #(
 
 
 	};
+
 
 	
     // State machine states
@@ -239,7 +242,7 @@ module lcdDisplay #(
 			  endcase
 		 end
 	end
-	
+	/*Timing block, used to create */
 	always_comb begin
 //		 case (state)
 //			  INIT:           next_count = 2000; // 150ms * 1.25 = 200
@@ -259,7 +262,7 @@ module lcdDisplay #(
 //			  CLEAR_DISPLAY:  next_count = 4000;
 //			  READY:          next_count = 4000;
 //			  WRITE_DATA_L13:     next_count = 4000;
-			  default:        next_count = 1200000;
+			  default:        next_count = 600000;
 		 endcase
 	end
 	   /*
@@ -267,19 +270,15 @@ module lcdDisplay #(
     if e==next_count/2 then
         e = 0// creates falling edge to trigger reading data on the LCD chip
     else if e == 0 then
-        e = 1// creates rising edge to trigger next sequence of data and counters
+        e = 1// creates rising edge to trigger loading data
    */
 	always_ff @( posedge clk, negedge rst) begin
 		 if (~rst) begin 
 			 count <= next_count;
-//			 state <=INIT;
 			 E <= 1;
 
 		 end else begin
-//			 data = 8'b1000_0001;
 //			 data = count;  //stimulation purposes only
-			 
-//			 if(state != STOP) begin
 				 count <= count - 1'b1;
 				 if(count < (next_count >> 1) && count > 0) begin
 					E <= 0;
@@ -289,14 +288,7 @@ module lcdDisplay #(
 				 end else begin
 					E <=1;
 				 end
-//			 end
 		 end
 	end
 
 endmodule
-
-/*PIN CHECKOUT
-
-data = 8'b1000_0001;
-
-*/
