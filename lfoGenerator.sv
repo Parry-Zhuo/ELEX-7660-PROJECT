@@ -16,7 +16,6 @@ module lfoGenerator (
 //	 output logic red, green, blue
 );
 
-	logic [15:0] clk_div_count ; 						// count used to divide clock
 	logic reset_n ; 							// reset signal
    	logic enc1_cw, enc1_ccw, enc2_cw, enc2_ccw ; 				// encoder module outputs
 	logic [1:0] sel ;  							// parameter select
@@ -46,33 +45,29 @@ module lfoGenerator (
 		GPIO_0[15:8] = lcd_Data;// LCD Data Bus (GPIO_7 to GPIO_15)
   	end  
 
-    always_ff @(posedge CLOCK_50) 
-        clk_div_count <= clk_div_count + 1'b1 ;
-	 
-    assign clk = clk_div_count[9];//50M/2^9 is approx 100KHz, o97656.25
+
+    
     // Instantiate LCD Controller6
 	 
 	encoder encoder_1 ( .clk( CLOCK_50 ), .a( enc1_a ), .b( enc1_b ), .cw( enc1_cw ), .ccw( enc1_ccw ) ) ;
 	encoder encoder_2 ( .clk( CLOCK_50 ), .a( enc2_a ), .b( enc2_b ), .cw( enc2_cw ), .ccw( enc2_ccw ) ) ;
 	enc2sel enc2sel_0 ( .clk( CLOCK_50 ), .cw( enc1_cw ), .ccw( enc1_ccw ), .sel, .reset_n ) ;
 	enc2val enc2val_0 ( .clk( CLOCK_50 ), .reset_n, .cw( enc2_cw ), .ccw( enc2_ccw ), .sel, .shape, .depth, .freq ) ;
-	freqGen #( 50000000 ) freqGen_0 ( .clk( CLOCK_50 ), .reset_n, .freq, .wclk ) ;
+//	freqGen #( 50000000 ) freqGen_0 ( .clk( CLOCK_50 ), .reset_n, .freq, .wclk ) ;
 //	waveGen waveGen_0 ( .wclk, .s2, .reset_n, .data( dacData ), .shape, .depth, .onOff ) ;
 //	dacInterface dacInterface_0 ( .clk( clk_div_count[5] ), .reset_n, .data( dacData ), .DAC_CSB, .DAC_SCLK, .DAC_DIN ) ;
-	lcdDisplay #( 64 ) lcdDisplay_0 ( .clk( clk_div_count[9] ), .rst( reset_n ), .RS(lcd_RS), .RW(lcd_RW), .E(lcd_E), .data( lcd_Data ), .sel, .shape, .depth, .freq ) ;
-//	lcdDisplay #(
-//		 .MESSAGE_LENGTH(64) // Pass parameters if needed
-//	) lcdInst_0 (
-//		 .clk(clk),
-//		 .rst(reset_n),
-//		 .RS(lcd_RS),
-//		 .RW(lcd_RW),
-//		 .E(lcd_E),
-//		 .data(lcd_Data),
-//		 .shape(shape),     // ← these are your new signals
-//		 .depth(depth),
-//		 .freq(freq)
-//	);
+	lcdDisplay lcdDisplay_0 ( 
+    .CLOCK_50( CLOCK_50 ), 
+    .rst( reset_n ), 
+    .RS( lcd_RS ), 
+    .RW( lcd_RW ), 
+    .E( lcd_E ), 
+    .data( lcd_Data ), 
+    .sel( sel ), 
+    .shape( shape ), 
+    .depth( depth ), 
+    .freq( freq )
+);
 
 
 
