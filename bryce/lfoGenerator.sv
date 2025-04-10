@@ -34,7 +34,7 @@ module lfoGenerator ( input logic CLOCK_50,       				// 50 MHz clock
 	freqGen #( 50000000 ) freqGen_0 ( .clk( CLOCK_50 ), .reset_n, .freq, .wclk ) ;
 	waveGen waveGen_0 ( .wclk, .s2, .reset_n, .data( dacData ), .shape, .depth, .onOff ) ;
 	dacInterface dacInterface_0 ( .clk( clk_div_count[5] ), .reset_n, .data( dacData ), .DAC_CSB, .DAC_SCLK, .DAC_DIN ) ;
-	lcdDisplay #( 64 ) lcdDisplay_0 ( .clk( clk_div_count[9] ), .rst( reset_n ), .RS, .RW, .E, .data( lcdData ), .sel, .shape, .depth, .freq ) ;
+	lcdDisplay #( 63 ) lcdDisplay_0 ( .CLOCK_50, .rst( reset_n ), .RS, .RW, .E, .data( lcdData ), .sel, .shape, .depth, .freq ) ;
 
 	// use count to divide clock
   	always_ff @( posedge CLOCK_50 ) 
@@ -49,7 +49,9 @@ module lfoGenerator ( input logic CLOCK_50,       				// 50 MHz clock
 		GPIO_0[0:2] = { DAC_CSB, DAC_SCLK, DAC_DIN } ; 	// DAC interface SPI communication signals
 		GPIO_0[3] = onOff ; 				// on/off LED indicator signal 
 		GPIO_0[4] = rateLED[8] ; 			// output waveform rate LED indicator signal
-		GPIO_0[5:7] = { RS, RW, E } ;			// LCD interface configuration signals
+		GPIO_0[5] = RS ;				// LCD interface configuration signal
+		GPIO_0[6] = RW ;				// LCD interface configuration signal
+		GPIO_0[7] = E ;					// LCD interface configuration signal
 		GPIO_0[8:15] = lcdData ;			// LCD Interface data
   	end  
 
