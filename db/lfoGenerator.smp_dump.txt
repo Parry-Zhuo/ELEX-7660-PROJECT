@@ -1,10 +1,17 @@
 
-State Machine - |lfoGenerator|lcd_controller:lcdInst_0|state
-Name state.WRITE_DATA state.READY state.CLEAR_DISPLAY state.ENTRY_MODE state.DISPLAY_CONTROL state.FUNCTION_SET state.INIT 
-state.INIT 0 0 0 0 0 0 0 
-state.FUNCTION_SET 0 0 0 0 0 1 1 
-state.DISPLAY_CONTROL 0 0 0 0 1 0 1 
-state.ENTRY_MODE 0 0 0 1 0 0 1 
-state.CLEAR_DISPLAY 0 0 1 0 0 0 1 
-state.READY 0 1 0 0 0 0 1 
-state.WRITE_DATA 1 0 0 0 0 0 1 
+State Machine - |lfoGenerator|lcdDisplay:lcdDisplay_0|state
+Name state.STOP state.WRITE_DATA_L24 state.SWITCH_TO_L24 state.WRITE_DATA_L13 state.FUNCTION_SET state.CURSORSHIFT state.DISPLAY_ONOFF state.ENTRY_MODE state.RETURN_HOME state.CLEAR_DISPLAY state.FUNCTION_SET3 state.FUNCTION_SET2 state.FUNCTION_SET1 state.INIT 
+state.INIT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.FUNCTION_SET1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.FUNCTION_SET2 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.FUNCTION_SET3 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.CLEAR_DISPLAY 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.RETURN_HOME 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.ENTRY_MODE 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.DISPLAY_ONOFF 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.CURSORSHIFT 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.FUNCTION_SET 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.WRITE_DATA_L13 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.SWITCH_TO_L24 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.WRITE_DATA_L24 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.STOP 1 0 0 0 0 0 0 0 0 0 0 0 0 1 

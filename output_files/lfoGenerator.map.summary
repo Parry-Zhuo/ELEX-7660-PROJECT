@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Sun Mar 23 14:09:29 2025
+Analysis & Synthesis Status : Successful - Wed Apr  9 18:20:10 2025
 Quartus Prime Version : 21.1.0 Build 842 10/21/2021 Patches 0.02i SJ Lite Edition
 Revision Name : lfoGenerator
 Top-level Entity Name : lfoGenerator
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 0
-Total pins : 22
+Total registers : 177
+Total pins : 21
 Total virtual pins : 0
 Total block memory bits : 0
 Total DSP Blocks : 0

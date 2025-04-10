@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lfoGenerator
-Sun Mar 23 14:09:29 2025
+Wed Apr  9 18:20:10 2025
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 Patches 0.02i SJ Lite Edition
 
 
@@ -13,18 +13,18 @@ Quartus Prime Version 21.1.0 Build 842 10/21/2021 Patches 0.02i SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |lfoGenerator|lcd_controller:lcdInst_0|state
-  9. Logic Cells Representing Combinational Loops
- 10. Registers Removed During Synthesis
- 11. Removed Registers Triggering Further Register Optimizations
- 12. General Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Source assignments for Top-level Entity: |lfoGenerator
- 15. Port Connectivity Checks: "lcd_controller:lcdInst_0"
- 16. Post-Synthesis Netlist Statistics for Top Partition
- 17. Elapsed Time Per Partition
- 18. Analysis & Synthesis Messages
- 19. Analysis & Synthesis Suppressed Messages
+  8. State Machine - |lfoGenerator|lcdDisplay:lcdDisplay_0|state
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Source assignments for Top-level Entity: |lfoGenerator
+ 14. Parameter Settings for User Entity Instance: freqGen:freqGen_0
+ 15. Parameter Settings for User Entity Instance: lcdDisplay:lcdDisplay_0
+ 16. Port Connectivity Checks: "lcdDisplay:lcdDisplay_0"
+ 17. Post-Synthesis Netlist Statistics for Top Partition
+ 18. Elapsed Time Per Partition
+ 19. Analysis & Synthesis Messages
 
 
 
@@ -51,14 +51,14 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                                ;
 +---------------------------------+-----------------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Mar 23 14:09:29 2025                     ;
+; Analysis & Synthesis Status     ; Successful - Wed Apr  9 18:20:10 2025                     ;
 ; Quartus Prime Version           ; 21.1.0 Build 842 10/21/2021 Patches 0.02i SJ Lite Edition ;
 ; Revision Name                   ; lfoGenerator                                              ;
 ; Top-level Entity Name           ; lfoGenerator                                              ;
 ; Family                          ; Cyclone V                                                 ;
 ; Logic utilization (in ALMs)     ; N/A                                                       ;
-; Total registers                 ; 0                                                         ;
-; Total pins                      ; 22                                                        ;
+; Total registers                 ; 177                                                       ;
+; Total pins                      ; 21                                                        ;
 ; Total virtual pins              ; 0                                                         ;
 ; Total block memory bits         ; 0                                                         ;
 ; Total DSP Blocks                ; 0                                                         ;
@@ -164,143 +164,112 @@ https://fpgasoftware.intel.com/eula.
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
 ; Number detected on machine ; 16          ;
-; Maximum allowed            ; 8           ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                     ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                 ; Library ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------+---------+
-; lfoGenerator.sv                  ; yes             ; User SystemVerilog HDL File  ; Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv ;         ;
-; lcdDisplay.sv                    ; yes             ; User SystemVerilog HDL File  ; Z:/LV6/ELEX7660/lfoGenerator/lcdDisplay.sv   ;         ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                               ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                           ; Library ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------+---------+
+; encoder.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/encoder.sv      ;         ;
+; freqGen.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/freqGen.sv      ;         ;
+; enc2val.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/enc2val.sv      ;         ;
+; enc2sel.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/enc2sel.sv      ;         ;
+; lfoGenerator.sv                  ; yes             ; User SystemVerilog HDL File  ; C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv ;         ;
+; lcdDisplay.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lcdDisplay.sv   ;         ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary          ;
-+---------------------------------------------+--------+
-; Resource                                    ; Usage  ;
-+---------------------------------------------+--------+
-; Estimate of Logic utilization (ALMs needed) ; 0      ;
-;                                             ;        ;
-; Combinational ALUT usage for logic          ; 0      ;
-;     -- 7 input functions                    ; 0      ;
-;     -- 6 input functions                    ; 0      ;
-;     -- 5 input functions                    ; 0      ;
-;     -- 4 input functions                    ; 0      ;
-;     -- <=3 input functions                  ; 0      ;
-;                                             ;        ;
-; Dedicated logic registers                   ; 0      ;
-;                                             ;        ;
-; I/O pins                                    ; 22     ;
-;                                             ;        ;
-; Total DSP Blocks                            ; 0      ;
-;                                             ;        ;
-; Maximum fan-out node                        ; enc1_a ;
-; Maximum fan-out                             ; 1      ;
-; Total fan-out                               ; 22     ;
-; Average fan-out                             ; 0.50   ;
-+---------------------------------------------+--------+
++--------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary            ;
++---------------------------------------------+----------+
+; Resource                                    ; Usage    ;
++---------------------------------------------+----------+
+; Estimate of Logic utilization (ALMs needed) ; 247      ;
+;                                             ;          ;
+; Combinational ALUT usage for logic          ; 385      ;
+;     -- 7 input functions                    ; 4        ;
+;     -- 6 input functions                    ; 103      ;
+;     -- 5 input functions                    ; 46       ;
+;     -- 4 input functions                    ; 64       ;
+;     -- <=3 input functions                  ; 168      ;
+;                                             ;          ;
+; Dedicated logic registers                   ; 177      ;
+;                                             ;          ;
+; I/O pins                                    ; 21       ;
+;                                             ;          ;
+; Total DSP Blocks                            ; 0        ;
+;                                             ;          ;
+; Maximum fan-out node                        ; s1~input ;
+; Maximum fan-out                             ; 150      ;
+; Total fan-out                               ; 2174     ;
+; Average fan-out                             ; 3.60     ;
++---------------------------------------------+----------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                     ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+--------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name  ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+--------------+--------------+
-; |lfoGenerator              ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 22   ; 0            ; |lfoGenerator       ; lfoGenerator ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+--------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                         ;
++------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------+--------------+--------------+
+; Compilation Hierarchy Node   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                   ; Entity Name  ; Library Name ;
++------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------+--------------+--------------+
+; |lfoGenerator                ; 385 (19)            ; 177 (19)                  ; 0                 ; 0          ; 21   ; 0            ; |lfoGenerator                         ; lfoGenerator ; work         ;
+;    |enc2sel:enc2sel_0|       ; 41 (41)             ; 28 (28)                   ; 0                 ; 0          ; 0    ; 0            ; |lfoGenerator|enc2sel:enc2sel_0       ; enc2sel      ; work         ;
+;    |enc2val:enc2val_0|       ; 58 (58)             ; 40 (40)                   ; 0                 ; 0          ; 0    ; 0            ; |lfoGenerator|enc2val:enc2val_0       ; enc2val      ; work         ;
+;    |encoder:encoder_1|       ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |lfoGenerator|encoder:encoder_1       ; encoder      ; work         ;
+;    |encoder:encoder_2|       ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |lfoGenerator|encoder:encoder_2       ; encoder      ; work         ;
+;    |freqGen:freqGen_0|       ; 112 (112)           ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |lfoGenerator|freqGen:freqGen_0       ; freqGen      ; work         ;
+;    |lcdDisplay:lcdDisplay_0| ; 147 (147)           ; 50 (50)                   ; 0                 ; 0          ; 0    ; 0            ; |lfoGenerator|lcdDisplay:lcdDisplay_0 ; lcdDisplay   ; work         ;
++------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------+--------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |lfoGenerator|lcd_controller:lcdInst_0|state                                                                                              ;
-+-----------------------+------------------+-------------+---------------------+------------------+-----------------------+--------------------+------------+
-; Name                  ; state.WRITE_DATA ; state.READY ; state.CLEAR_DISPLAY ; state.ENTRY_MODE ; state.DISPLAY_CONTROL ; state.FUNCTION_SET ; state.INIT ;
-+-----------------------+------------------+-------------+---------------------+------------------+-----------------------+--------------------+------------+
-; state.INIT            ; 0                ; 0           ; 0                   ; 0                ; 0                     ; 0                  ; 0          ;
-; state.FUNCTION_SET    ; 0                ; 0           ; 0                   ; 0                ; 0                     ; 1                  ; 1          ;
-; state.DISPLAY_CONTROL ; 0                ; 0           ; 0                   ; 0                ; 1                     ; 0                  ; 1          ;
-; state.ENTRY_MODE      ; 0                ; 0           ; 0                   ; 1                ; 0                     ; 0                  ; 1          ;
-; state.CLEAR_DISPLAY   ; 0                ; 0           ; 1                   ; 0                ; 0                     ; 0                  ; 1          ;
-; state.READY           ; 0                ; 1           ; 0                   ; 0                ; 0                     ; 0                  ; 1          ;
-; state.WRITE_DATA      ; 1                ; 0           ; 0                   ; 0                ; 0                     ; 0                  ; 1          ;
-+-----------------------+------------------+-------------+---------------------+------------------+-----------------------+--------------------+------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |lfoGenerator|lcdDisplay:lcdDisplay_0|state                                                                                                                                                                                                                                                      ;
++----------------------+------------+----------------------+---------------------+----------------------+--------------------+-------------------+---------------------+------------------+-------------------+---------------------+---------------------+---------------------+---------------------+------------+
+; Name                 ; state.STOP ; state.WRITE_DATA_L24 ; state.SWITCH_TO_L24 ; state.WRITE_DATA_L13 ; state.FUNCTION_SET ; state.CURSORSHIFT ; state.DISPLAY_ONOFF ; state.ENTRY_MODE ; state.RETURN_HOME ; state.CLEAR_DISPLAY ; state.FUNCTION_SET3 ; state.FUNCTION_SET2 ; state.FUNCTION_SET1 ; state.INIT ;
++----------------------+------------+----------------------+---------------------+----------------------+--------------------+-------------------+---------------------+------------------+-------------------+---------------------+---------------------+---------------------+---------------------+------------+
+; state.INIT           ; 0          ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                   ; 0                ; 0                 ; 0                   ; 0                   ; 0                   ; 0                   ; 0          ;
+; state.FUNCTION_SET1  ; 0          ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                   ; 0                ; 0                 ; 0                   ; 0                   ; 0                   ; 1                   ; 1          ;
+; state.FUNCTION_SET2  ; 0          ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                   ; 0                ; 0                 ; 0                   ; 0                   ; 1                   ; 0                   ; 1          ;
+; state.FUNCTION_SET3  ; 0          ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                   ; 0                ; 0                 ; 0                   ; 1                   ; 0                   ; 0                   ; 1          ;
+; state.CLEAR_DISPLAY  ; 0          ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                   ; 0                ; 0                 ; 1                   ; 0                   ; 0                   ; 0                   ; 1          ;
+; state.RETURN_HOME    ; 0          ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                   ; 0                ; 1                 ; 0                   ; 0                   ; 0                   ; 0                   ; 1          ;
+; state.ENTRY_MODE     ; 0          ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                   ; 1                ; 0                 ; 0                   ; 0                   ; 0                   ; 0                   ; 1          ;
+; state.DISPLAY_ONOFF  ; 0          ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 1                   ; 0                ; 0                 ; 0                   ; 0                   ; 0                   ; 0                   ; 1          ;
+; state.CURSORSHIFT    ; 0          ; 0                    ; 0                   ; 0                    ; 0                  ; 1                 ; 0                   ; 0                ; 0                 ; 0                   ; 0                   ; 0                   ; 0                   ; 1          ;
+; state.FUNCTION_SET   ; 0          ; 0                    ; 0                   ; 0                    ; 1                  ; 0                 ; 0                   ; 0                ; 0                 ; 0                   ; 0                   ; 0                   ; 0                   ; 1          ;
+; state.WRITE_DATA_L13 ; 0          ; 0                    ; 0                   ; 1                    ; 0                  ; 0                 ; 0                   ; 0                ; 0                 ; 0                   ; 0                   ; 0                   ; 0                   ; 1          ;
+; state.SWITCH_TO_L24  ; 0          ; 0                    ; 1                   ; 0                    ; 0                  ; 0                 ; 0                   ; 0                ; 0                 ; 0                   ; 0                   ; 0                   ; 0                   ; 1          ;
+; state.WRITE_DATA_L24 ; 0          ; 1                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                   ; 0                ; 0                 ; 0                   ; 0                   ; 0                   ; 0                   ; 1          ;
+; state.STOP           ; 1          ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                   ; 0                ; 0                 ; 0                   ; 0                   ; 0                   ; 0                   ; 1          ;
++----------------------+------------+----------------------+---------------------+----------------------+--------------------+-------------------+---------------------+------------------+-------------------+---------------------+---------------------+---------------------+---------------------+------------+
 
 
-+------------------------------------------------------------+
-; Logic Cells Representing Combinational Loops               ;
-+--------------------------------------------------------+---+
-; Logic Cell Name                                        ;   ;
-+--------------------------------------------------------+---+
-; lcd_controller:lcdInst_0|LessThan0~0                   ;   ;
-; lcd_controller:lcdInst_0|next_count[4]~0               ;   ;
-; lcd_controller:lcdInst_0|LessThan0~1                   ;   ;
-; lcd_controller:lcdInst_0|next_count[2]~1               ;   ;
-; lcd_controller:lcdInst_0|next_count[1]~2               ;   ;
-; lcd_controller:lcdInst_0|next_count[0]~3               ;   ;
-; Number of logic cells representing combinational loops ; 6 ;
-+--------------------------------------------------------+---+
-Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
-
-
-+-----------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                            ;
-+------------------------------------------------+----------------------------------------------+
-; Register name                                  ; Reason for Removal                           ;
-+------------------------------------------------+----------------------------------------------+
-; lcd_controller:lcdInst_0|RW                    ; Stuck at GND due to stuck port data_in       ;
-; lcd_controller:lcdInst_0|data[6,7]             ; Stuck at GND due to stuck port data_in       ;
-; lcd_controller:lcdInst_0|data[5]               ; Merged with lcd_controller:lcdInst_0|data[4] ;
-; lcd_controller:lcdInst_0|state~2               ; Lost fanout                                  ;
-; lcd_controller:lcdInst_0|state~3               ; Lost fanout                                  ;
-; lcd_controller:lcdInst_0|state~4               ; Lost fanout                                  ;
-; lcd_controller:lcdInst_0|clk_div_count[7..15]  ; Lost fanout                                  ;
-; lcd_controller:lcdInst_0|E                     ; Stuck at VCC due to stuck port data_in       ;
-; lcd_controller:lcdInst_0|data[0..4]            ; Stuck at GND due to stuck port clock         ;
-; lcd_controller:lcdInst_0|state.INIT            ; Stuck at GND due to stuck port clock         ;
-; lcd_controller:lcdInst_0|state.READY           ; Stuck at GND due to stuck port clock         ;
-; lcd_controller:lcdInst_0|state.WRITE_DATA      ; Stuck at GND due to stuck port clock         ;
-; lcd_controller:lcdInst_0|state.FUNCTION_SET    ; Stuck at GND due to stuck port clock         ;
-; lcd_controller:lcdInst_0|state.DISPLAY_CONTROL ; Stuck at GND due to stuck port clock         ;
-; lcd_controller:lcdInst_0|state.ENTRY_MODE      ; Stuck at GND due to stuck port clock         ;
-; lcd_controller:lcdInst_0|state.CLEAR_DISPLAY   ; Stuck at GND due to stuck port clock         ;
-; lcd_controller:lcdInst_0|RS                    ; Stuck at GND due to stuck port clock         ;
-; lcd_controller:lcdInst_0|clk_div_count[0..6]   ; Lost fanout                                  ;
-; Total Number of Removed Registers = 37         ;                                              ;
-+------------------------------------------------+----------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                        ;
-+-------------------------------------------+---------------------------+----------------------------------------------------------------------------+
-; Register name                             ; Reason for Removal        ; Registers Removed due to This Register                                     ;
-+-------------------------------------------+---------------------------+----------------------------------------------------------------------------+
-; lcd_controller:lcdInst_0|E                ; Stuck at VCC              ; lcd_controller:lcdInst_0|data[0], lcd_controller:lcdInst_0|data[1],        ;
-;                                           ; due to stuck port data_in ; lcd_controller:lcdInst_0|data[2], lcd_controller:lcdInst_0|data[3],        ;
-;                                           ;                           ; lcd_controller:lcdInst_0|state.INIT, lcd_controller:lcdInst_0|state.READY, ;
-;                                           ;                           ; lcd_controller:lcdInst_0|state.WRITE_DATA,                                 ;
-;                                           ;                           ; lcd_controller:lcdInst_0|state.FUNCTION_SET,                               ;
-;                                           ;                           ; lcd_controller:lcdInst_0|state.DISPLAY_CONTROL,                            ;
-;                                           ;                           ; lcd_controller:lcdInst_0|state.ENTRY_MODE,                                 ;
-;                                           ;                           ; lcd_controller:lcdInst_0|state.CLEAR_DISPLAY, lcd_controller:lcdInst_0|RS  ;
-; lcd_controller:lcdInst_0|clk_div_count[7] ; Lost Fanouts              ; lcd_controller:lcdInst_0|clk_div_count[6],                                 ;
-;                                           ;                           ; lcd_controller:lcdInst_0|clk_div_count[5],                                 ;
-;                                           ;                           ; lcd_controller:lcdInst_0|clk_div_count[4],                                 ;
-;                                           ;                           ; lcd_controller:lcdInst_0|clk_div_count[3],                                 ;
-;                                           ;                           ; lcd_controller:lcdInst_0|clk_div_count[2]                                  ;
-; lcd_controller:lcdInst_0|data[6]          ; Stuck at GND              ; lcd_controller:lcdInst_0|data[4]                                           ;
-;                                           ; due to stuck port data_in ;                                                                            ;
-+-------------------------------------------+---------------------------+----------------------------------------------------------------------------+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; freqGen:freqGen_0|count[0]             ; Stuck at GND due to stuck port data_in ;
+; lcdDisplay:lcdDisplay_0|state~4        ; Lost fanout                            ;
+; lcdDisplay:lcdDisplay_0|state~5        ; Lost fanout                            ;
+; lcdDisplay:lcdDisplay_0|state~6        ; Lost fanout                            ;
+; lcdDisplay:lcdDisplay_0|state~7        ; Lost fanout                            ;
+; lcdDisplay:lcdDisplay_0|state~8        ; Lost fanout                            ;
+; rateLED[9..15]                         ; Lost fanout                            ;
+; clk_div_count[10..15]                  ; Lost fanout                            ;
+; Total Number of Removed Registers = 19 ;                                        ;
++----------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -308,24 +277,53 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 177   ;
+; Number of registers using Synchronous Clear  ; 84    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 150   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 58    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |lfoGenerator|lcd_controller:lcdInst_0|next_state.INIT  ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |lfoGenerator|lcd_controller:lcdInst_0|next_state.READY ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; lcdDisplay:lcdDisplay_0|E               ; 37      ;
+; lcdDisplay:lcdDisplay_0|count[10]       ; 2       ;
+; lcdDisplay:lcdDisplay_0|count[9]        ; 3       ;
+; lcdDisplay:lcdDisplay_0|count[8]        ; 3       ;
+; lcdDisplay:lcdDisplay_0|count[7]        ; 3       ;
+; lcdDisplay:lcdDisplay_0|count[6]        ; 3       ;
+; enc2val:enc2val_0|freq[1]               ; 38      ;
+; enc2val:enc2val_0|freq[2]               ; 39      ;
+; enc2val:enc2val_0|freq[3]               ; 38      ;
+; enc2val:enc2val_0|depth[1]              ; 4       ;
+; Total number of inverted registers = 10 ;         ;
++-----------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |lfoGenerator|enc2val:enc2val_0|freq[5]              ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |lfoGenerator|enc2val:enc2val_0|cw_count[0]          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |lfoGenerator|enc2val:enc2val_0|ccw_count[1]         ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |lfoGenerator|enc2sel:enc2sel_0|cw_count[1]          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |lfoGenerator|enc2sel:enc2sel_0|ccw_count[2]         ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |lfoGenerator|enc2val:enc2val_0|debounce_timer[15]   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |lfoGenerator|enc2sel:enc2sel_0|debounce_timer[3]    ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |lfoGenerator|enc2sel:enc2sel_0|sel[0]               ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |lfoGenerator|enc2val:enc2val_0|shape[0]             ;
+; 6:1                ; 13 bits   ; 52 LEs        ; 0 LEs                ; 52 LEs                 ; Yes        ; |lfoGenerator|lcdDisplay:lcdDisplay_0|write_count[4] ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |lfoGenerator|enc2val:enc2val_0|freq[2]              ;
+; 5:1                ; 12 bits   ; 36 LEs        ; 24 LEs               ; 12 LEs                 ; No         ; |lfoGenerator|lcdDisplay:lcdDisplay_0|Selector13     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
 
 
 +--------------------------------------------------------+
@@ -340,12 +338,32 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +-----------------------+-------+------+-----------------+
 
 
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: freqGen:freqGen_0 ;
++----------------+----------+------------------------------------+
+; Parameter Name ; Value    ; Type                               ;
++----------------+----------+------------------------------------+
+; FCLK           ; 50000000 ; Signed Integer                     ;
++----------------+----------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: lcdDisplay:lcdDisplay_0 ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; MESSAGE_LENGTH ; 64    ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "lcd_controller:lcdInst_0"                                                           ;
+; Port Connectivity Checks: "lcdDisplay:lcdDisplay_0"                                                            ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
-; rst  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; RW   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 
 
@@ -354,13 +372,33 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 2                           ;
-;     normal            ; 2                           ;
-;         0 data inputs ; 2                           ;
-; boundary_port         ; 22                          ;
+; arriav_ff             ; 177                         ;
+;     CLR               ; 53                          ;
+;     CLR SCLR          ; 39                          ;
+;     ENA CLR           ; 13                          ;
+;     ENA CLR SCLR      ; 45                          ;
+;     plain             ; 27                          ;
+; arriav_lcell_comb     ; 387                         ;
+;     arith             ; 130                         ;
+;         0 data inputs ; 5                           ;
+;         1 data inputs ; 102                         ;
+;         2 data inputs ; 14                          ;
+;         4 data inputs ; 8                           ;
+;         5 data inputs ; 1                           ;
+;     extend            ; 4                           ;
+;         7 data inputs ; 4                           ;
+;     normal            ; 253                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 16                          ;
+;         3 data inputs ; 25                          ;
+;         4 data inputs ; 56                          ;
+;         5 data inputs ; 45                          ;
+;         6 data inputs ; 103                         ;
+; boundary_port         ; 21                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 0.00                        ;
-; Average LUT depth     ; 0.00                        ;
+; Max LUT depth         ; 9.30                        ;
+; Average LUT depth     ; 3.97                        ;
 +-----------------------+-----------------------------+
 
 
@@ -369,7 +407,7 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -379,68 +417,68 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.0 Build 842 10/21/2021 Patches 0.02i SJ Lite Edition
-    Info: Processing started: Sun Mar 23 14:09:16 2025
+    Info: Processing started: Wed Apr  9 18:19:31 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lfoGenerator -c lfoGenerator
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file encoder.sv
+    Info (12023): Found entity 1: encoder File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/encoder.sv Line: 8
+Info (12021): Found 1 design units, including 1 entities, in source file wavegen.sv
+    Info (12023): Found entity 1: waveGen File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/waveGen.sv Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file freqgen.sv
+    Info (12023): Found entity 1: freqGen File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/freqGen.sv Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file enc2val.sv
+    Info (12023): Found entity 1: enc2val File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/enc2val.sv Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file enc2sel.sv
+    Info (12023): Found entity 1: enc2sel File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/enc2sel.sv Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file dacinterface.sv
+    Info (12023): Found entity 1: dacInterface File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/dacInterface.sv Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file lfogenerator.sv
-    Info (12023): Found entity 1: lfoGenerator File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 8
+    Info (12023): Found entity 1: lfoGenerator File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 8
 Info (12021): Found 1 design units, including 1 entities, in source file lcddisplay.sv
-    Info (12023): Found entity 1: lcd_controller File: Z:/LV6/ELEX7660/lfoGenerator/lcdDisplay.sv Line: 7
+    Info (12023): Found entity 1: lcdDisplay File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lcdDisplay.sv Line: 11
+Warning (10236): Verilog HDL Implicit Net warning at lfoGenerator.sv(52): created implicit net for "clk" File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 52
 Info (12127): Elaborating entity "lfoGenerator" for the top level hierarchy
-Warning (10858): Verilog HDL warning at lfoGenerator.sv(20): object DAC_CSB used but never assigned File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 20
-Warning (10858): Verilog HDL warning at lfoGenerator.sv(20): object DAC_SCLK used but never assigned File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 20
-Warning (10858): Verilog HDL warning at lfoGenerator.sv(20): object DAC_DIN used but never assigned File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 20
-Warning (10030): Net "DAC_CSB" at lfoGenerator.sv(20) has no driver or initial value, using a default initial value '0' File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 20
-Warning (10030): Net "DAC_SCLK" at lfoGenerator.sv(20) has no driver or initial value, using a default initial value '0' File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 20
-Warning (10030): Net "DAC_DIN" at lfoGenerator.sv(20) has no driver or initial value, using a default initial value '0' File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 20
-Warning (10034): Output port "GPIO_0[3]" at lfoGenerator.sv(16) has no driver File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-Info (12128): Elaborating entity "lcd_controller" for hierarchy "lcd_controller:lcdInst_0" File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 50
-Critical Warning (10237): Verilog HDL warning at lcdDisplay.sv(96): can't infer register for assignment in edge-triggered always construct because the clock isn't obvious. Generated combinational logic instead File: Z:/LV6/ELEX7660/lfoGenerator/lcdDisplay.sv Line: 96
-Warning (10230): Verilog HDL assignment warning at lcdDisplay.sv(108): truncated value with size 32 to match size of target (5) File: Z:/LV6/ELEX7660/lfoGenerator/lcdDisplay.sv Line: 108
-Warning (10230): Verilog HDL assignment warning at lcdDisplay.sv(129): truncated value with size 32 to match size of target (5) File: Z:/LV6/ELEX7660/lfoGenerator/lcdDisplay.sv Line: 129
-Warning (10030): Net "rst" at lcdDisplay.sv(9) has no driver or initial value, using a default initial value '0' File: Z:/LV6/ELEX7660/lfoGenerator/lcdDisplay.sv Line: 9
+Warning (10036): Verilog HDL or VHDL warning at lfoGenerator.sv(52): object "clk" assigned a value but never read File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 52
+Warning (10858): Verilog HDL warning at lfoGenerator.sv(28): object onOff used but never assigned File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 28
+Warning (10030): Net "onOff" at lfoGenerator.sv(28) has no driver or initial value, using a default initial value '0' File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 28
+Warning (10034): Output port "GPIO_0[17..16]" at lfoGenerator.sv(17) has no driver File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 17
+Warning (10034): Output port "GPIO_0[7]" at lfoGenerator.sv(17) has no driver File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 17
+Info (12128): Elaborating entity "encoder" for hierarchy "encoder:encoder_1" File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 55
+Info (12128): Elaborating entity "enc2sel" for hierarchy "enc2sel:enc2sel_0" File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 57
+Info (10264): Verilog HDL Case Statement information at enc2sel.sv(20): all case item expressions in this case statement are onehot File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/enc2sel.sv Line: 20
+Info (12128): Elaborating entity "enc2val" for hierarchy "enc2val:enc2val_0" File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 58
+Info (10264): Verilog HDL Case Statement information at enc2val.sv(28): all case item expressions in this case statement are onehot File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/enc2val.sv Line: 28
+Info (10264): Verilog HDL Case Statement information at enc2val.sv(56): all case item expressions in this case statement are onehot File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/enc2val.sv Line: 56
+Info (10264): Verilog HDL Case Statement information at enc2val.sv(75): all case item expressions in this case statement are onehot File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/enc2val.sv Line: 75
+Info (12128): Elaborating entity "freqGen" for hierarchy "freqGen:freqGen_0" File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 59
+Info (12128): Elaborating entity "lcdDisplay" for hierarchy "lcdDisplay:lcdDisplay_0" File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 62
+Info (10264): Verilog HDL Case Statement information at lcdDisplay.sv(46): all case item expressions in this case statement are onehot File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lcdDisplay.sv Line: 46
+Warning (10272): Verilog HDL Case Statement warning at lcdDisplay.sv(92): case item expression covers a value already covered by a previous case item File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lcdDisplay.sv Line: 92
+Warning (10230): Verilog HDL assignment warning at lcdDisplay.sv(404): truncated value with size 32 to match size of target (13) File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lcdDisplay.sv Line: 404
+Warning (10230): Verilog HDL assignment warning at lcdDisplay.sv(417): truncated value with size 32 to match size of target (13) File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lcdDisplay.sv Line: 417
+Warning (10230): Verilog HDL assignment warning at lcdDisplay.sv(489): truncated value with size 32 to match size of target (13) File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lcdDisplay.sv Line: 489
+Info (13014): Ignored 4 buffer(s)
+    Info (13019): Ignored 4 SOFT buffer(s)
+Info (13000): Registers with preset signals will power-up high File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lcdDisplay.sv Line: 506
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "GPIO_0[0]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[1]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[2]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[3]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[4]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[5]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[6]" is stuck at VCC File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[7]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[8]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[9]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[10]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[11]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[12]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[13]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[14]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-    Warning (13410): Pin "GPIO_0[15]" is stuck at GND File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 16
-Info (17049): 19 registers lost all their fanouts during netlist optimizations.
-Info (144001): Generated suppressed messages file Z:/LV6/ELEX7660/lfoGenerator/output_files/lfoGenerator.map.smsg
+    Warning (13410): Pin "GPIO_0[3]" is stuck at GND File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 17
+    Warning (13410): Pin "GPIO_0[7]" is stuck at GND File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 17
+    Warning (13410): Pin "GPIO_0[16]" is stuck at GND File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 17
+    Warning (13410): Pin "GPIO_0[17]" is stuck at GND File: C:/Users/Parry/Documents/GitHub/ELEX-7660-PROJECT-V2/ELEX-7660-PROJECT/lfoGenerator.sv Line: 17
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 18 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 6 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "enc1_a" File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 11
-    Warning (15610): No output dependent on input pin "enc1_b" File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 11
-    Warning (15610): No output dependent on input pin "enc2_a" File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 13
-    Warning (15610): No output dependent on input pin "enc2_b" File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 13
-    Warning (15610): No output dependent on input pin "s1" File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 14
-    Warning (15610): No output dependent on input pin "CLOCK_50" File: Z:/LV6/ELEX7660/lfoGenerator/lfoGenerator.sv Line: 9
-Info (21057): Implemented 22 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 410 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 6 input pins
-    Info (21059): Implemented 16 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 36 warnings
-    Info: Peak virtual memory: 4820 megabytes
-    Info: Processing ended: Sun Mar 23 14:09:29 2025
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:10
-
-
-+------------------------------------------+
-; Analysis & Synthesis Suppressed Messages ;
-+------------------------------------------+
-The suppressed messages can be found in Z:/LV6/ELEX7660/lfoGenerator/output_files/lfoGenerator.map.smsg.
+    Info (21059): Implemented 15 output pins
+    Info (21061): Implemented 389 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 4928 megabytes
+    Info: Processing ended: Wed Apr  9 18:20:10 2025
+    Info: Elapsed time: 00:00:39
+    Info: Total CPU time (on all processors): 00:00:22
 
 

@@ -2,4 +2,196 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow 1100mV 85C Model Setup 'CLOCK_50'
+Slack : -8.686
+TNS   : -577.394
+
+Type  : Slow 1100mV 85C Model Setup 'lcdDisplay:lcdDisplay_0|E'
+Slack : -6.078
+TNS   : -136.543
+
+Type  : Slow 1100mV 85C Model Setup 'clk_div_count[9]'
+Slack : -2.480
+TNS   : -48.338
+
+Type  : Slow 1100mV 85C Model Setup 'freqGen:freqGen_0|wclk'
+Slack : -1.896
+TNS   : -13.947
+
+Type  : Slow 1100mV 85C Model Hold 'CLOCK_50'
+Slack : 0.255
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'lcdDisplay:lcdDisplay_0|E'
+Slack : 0.297
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'clk_div_count[9]'
+Slack : 0.312
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'freqGen:freqGen_0|wclk'
+Slack : 0.486
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.394
+TNS   : -80.294
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'lcdDisplay:lcdDisplay_0|E'
+Slack : -0.394
+TNS   : -25.521
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clk_div_count[9]'
+Slack : -0.394
+TNS   : -13.174
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'freqGen:freqGen_0|wclk'
+Slack : -0.394
+TNS   : -5.228
+
+Type  : Slow 1100mV 0C Model Setup 'CLOCK_50'
+Slack : -8.790
+TNS   : -572.084
+
+Type  : Slow 1100mV 0C Model Setup 'lcdDisplay:lcdDisplay_0|E'
+Slack : -6.106
+TNS   : -133.011
+
+Type  : Slow 1100mV 0C Model Setup 'clk_div_count[9]'
+Slack : -2.471
+TNS   : -48.759
+
+Type  : Slow 1100mV 0C Model Setup 'freqGen:freqGen_0|wclk'
+Slack : -1.957
+TNS   : -14.436
+
+Type  : Slow 1100mV 0C Model Hold 'CLOCK_50'
+Slack : 0.238
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'clk_div_count[9]'
+Slack : 0.305
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'lcdDisplay:lcdDisplay_0|E'
+Slack : 0.350
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'freqGen:freqGen_0|wclk'
+Slack : 0.437
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.394
+TNS   : -86.687
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'lcdDisplay:lcdDisplay_0|E'
+Slack : -0.394
+TNS   : -24.553
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clk_div_count[9]'
+Slack : -0.394
+TNS   : -12.785
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'freqGen:freqGen_0|wclk'
+Slack : -0.394
+TNS   : -5.128
+
+Type  : Fast 1100mV 85C Model Setup 'CLOCK_50'
+Slack : -4.712
+TNS   : -282.296
+
+Type  : Fast 1100mV 85C Model Setup 'lcdDisplay:lcdDisplay_0|E'
+Slack : -3.330
+TNS   : -68.016
+
+Type  : Fast 1100mV 85C Model Setup 'clk_div_count[9]'
+Slack : -1.248
+TNS   : -20.910
+
+Type  : Fast 1100mV 85C Model Setup 'freqGen:freqGen_0|wclk'
+Slack : -0.739
+TNS   : -4.933
+
+Type  : Fast 1100mV 85C Model Hold 'lcdDisplay:lcdDisplay_0|E'
+Slack : 0.075
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'clk_div_count[9]'
+Slack : 0.110
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'CLOCK_50'
+Slack : 0.150
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'freqGen:freqGen_0|wclk'
+Slack : 0.221
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.350
+TNS   : -17.743
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'lcdDisplay:lcdDisplay_0|E'
+Slack : 0.011
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clk_div_count[9]'
+Slack : 0.028
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'freqGen:freqGen_0|wclk'
+Slack : 0.146
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'CLOCK_50'
+Slack : -4.319
+TNS   : -248.114
+
+Type  : Fast 1100mV 0C Model Setup 'lcdDisplay:lcdDisplay_0|E'
+Slack : -3.128
+TNS   : -61.288
+
+Type  : Fast 1100mV 0C Model Setup 'clk_div_count[9]'
+Slack : -1.083
+TNS   : -18.134
+
+Type  : Fast 1100mV 0C Model Setup 'freqGen:freqGen_0|wclk'
+Slack : -0.657
+TNS   : -4.469
+
+Type  : Fast 1100mV 0C Model Hold 'clk_div_count[9]'
+Slack : 0.094
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'lcdDisplay:lcdDisplay_0|E'
+Slack : 0.116
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
+Slack : 0.140
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'freqGen:freqGen_0|wclk'
+Slack : 0.186
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.328
+TNS   : -17.446
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'lcdDisplay:lcdDisplay_0|E'
+Slack : 0.031
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clk_div_count[9]'
+Slack : 0.060
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'freqGen:freqGen_0|wclk'
+Slack : 0.154
+TNS   : 0.000
+
 ------------------------------------------------------------

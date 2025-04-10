@@ -16,54 +16,63 @@ module lfoGenerator (
 //	 output logic red, green, blue
 );
 
-    // Internal signals
-	logic reset_n;           // Reset signal
-	logic lcd_RS, lcd_RW, lcd_E;   // LCD control signals
-	logic [0:7] lcd_Data;          // LCD data bus
-   logic [15:0] clk_div_count; // count used to divide clock
+	logic [15:0] clk_div_count ; 						// count used to divide clock
+	logic reset_n ; 							// reset signal
+   	logic enc1_cw, enc1_ccw, enc2_cw, enc2_ccw ; 				// encoder module outputs
+	logic [1:0] sel ;  							// parameter select
+	logic [2:0] shape ;							// index for wave shape selection
+	logic [2:0] depth ;							// index for wave depth selection
+	logic [7:0] freq ;							// frequency index for selecting output waveform rate
+	logic wclk ;								// wave clock for frequency generator 
+	logic [15:0] rateLED ; 							// count used to divide wave clock for LED rate indicator
+	logic onOff ;								// on/off signal	
+	logic DAC_CSB, DAC_SCLK, DAC_DIN ;					// DAC interface SPI communication signals
+	logic [11:0] dacData ;							// DAC interface data
+	logic lcd_RS, lcd_RW, lcd_E ;							// LCD interface configuration signals
+	logic [7:0] lcd_Data ;							// LCD interface data
 
-	
-	logic [2:0] shape, depth;
-	logic [7:0] freq;
-	
-	
-	assign shape = 3'd1; // Example: 1 = SQUARE
-	assign depth = 3'd3; // Example: show 3 bullets
-	assign freq  = 8'd100; // Example: 100 BPM
-    // Assign GPIO outputs
-	always_comb begin
-		reset_n = s1; // Implement reset button on S1
-      
-//		GPIO_0[3] = lcd_reset;       // Reset signal,  GPIO_0[3]
-		GPIO_0[4] = lcd_RS;        // Register Select GPIO_0[4]
-		GPIO_0[5] = lcd_RW;        // Read/Write GPIO_0[5]
+	 	// use count to divide wave clock for LED rate indicator
+  	always_ff @( posedge wclk ) 
+   	 	rateLED <= rateLED + 1'b1 ;
+  
+  	always_comb begin
+		reset_n = s1 ; 					// implement reset button on S1
+//		GPIO_0[0:2] = { DAC_CSB, DAC_SCLK, DAC_DIN } ; 	// DAC interface SPI communication signals
+		GPIO_0[3] = onOff ; 				// on/off LED indicator signal 
+		GPIO_0[4] = rateLED[8] ; 			// output waveform rate LED indicator signal
+		GPIO_0[5] = lcd_RS;        // Register Select GPIO_0[4]
+		//		GPIO_0[5] = lcd_RW;        // Read/Write GPIO_0[5]
 		GPIO_0[6] = lcd_E;    //The LCD reads data only on the falling edge of E (from HIGH → LOW). For bits DB7-0:   GPIO_0[6]
 		GPIO_0[15:8] = lcd_Data;// LCD Data Bus (GPIO_7 to GPIO_15)
-//		GPIO_0[15:8] = 8'b0101_0101;
-//		GPIO_0[15:8] = 8'b1010_1010;
-//		GPIO_0[7] = 0;
-//		GPIO_0[8] = 1;
+  	end  
 
-    end
-	 
     always_ff @(posedge CLOCK_50) 
         clk_div_count <= clk_div_count + 1'b1 ;
 	 
     assign clk = clk_div_count[9];//50M/2^9 is approx 100KHz, o97656.25
-    // Instantiate LCD Controller
-	lcdDisplay #(
-		 .MESSAGE_LENGTH(64) // Pass parameters if needed
-	) lcdInst_0 (
-		 .clk(clk),
-		 .rst(reset_n),
-		 .RS(lcd_RS),
-		 .RW(lcd_RW),
-		 .E(lcd_E),
-		 .data(lcd_Data),
-		 .shape(shape),     // ← these are your new signals
-		 .depth(depth),
-		 .freq(freq)
-	);
+    // Instantiate LCD Controller6
+	 
+	encoder encoder_1 ( .clk( CLOCK_50 ), .a( enc1_a ), .b( enc1_b ), .cw( enc1_cw ), .ccw( enc1_ccw ) ) ;
+	encoder encoder_2 ( .clk( CLOCK_50 ), .a( enc2_a ), .b( enc2_b ), .cw( enc2_cw ), .ccw( enc2_ccw ) ) ;
+	enc2sel enc2sel_0 ( .clk( CLOCK_50 ), .cw( enc1_cw ), .ccw( enc1_ccw ), .sel, .reset_n ) ;
+	enc2val enc2val_0 ( .clk( CLOCK_50 ), .reset_n, .cw( enc2_cw ), .ccw( enc2_ccw ), .sel, .shape, .depth, .freq ) ;
+	freqGen #( 50000000 ) freqGen_0 ( .clk( CLOCK_50 ), .reset_n, .freq, .wclk ) ;
+//	waveGen waveGen_0 ( .wclk, .s2, .reset_n, .data( dacData ), .shape, .depth, .onOff ) ;
+//	dacInterface dacInterface_0 ( .clk( clk_div_count[5] ), .reset_n, .data( dacData ), .DAC_CSB, .DAC_SCLK, .DAC_DIN ) ;
+	lcdDisplay #( 64 ) lcdDisplay_0 ( .clk( clk_div_count[9] ), .rst( reset_n ), .RS(lcd_RS), .RW(lcd_RW), .E(lcd_E), .data( lcd_Data ), .sel, .shape, .depth, .freq ) ;
+//	lcdDisplay #(
+//		 .MESSAGE_LENGTH(64) // Pass parameters if needed
+//	) lcdInst_0 (
+//		 .clk(clk),
+//		 .rst(reset_n),
+//		 .RS(lcd_RS),
+//		 .RW(lcd_RW),
+//		 .E(lcd_E),
+//		 .data(lcd_Data),
+//		 .shape(shape),     // ← these are your new signals
+//		 .depth(depth),
+//		 .freq(freq)
+//	);
 
 
 

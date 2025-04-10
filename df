@@ -1,0 +1,267 @@
+[33mcommit 38527c2c2fad7d2ca0aee876b201414bdb360e5d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Wed Apr 9 14:41:40 2025 -0700
+
+    Add files via upload
+    
+    Trying to see if these files are the correct ones
+
+[33mcommit 2e689d2b4516f427cd41846390dde2fbd869c193[m
+Author: BrycesDevices <131553372+BrycesDevices@users.noreply.github.com>
+Date:   Wed Apr 9 14:22:35 2025 -0700
+
+    Add files via upload
+
+[33mcommit d157e38d55b0303ce3ac8c89fea151cf813aa5a4[m
+Author: BrycesDevices <131553372+BrycesDevices@users.noreply.github.com>
+Date:   Wed Apr 9 14:22:06 2025 -0700
+
+    Add files via upload
+
+[33mcommit 8f5b45a163140afe12c10b0baddf94739be7bab8[m
+Author: BrycesDevices <131553372+BrycesDevices@users.noreply.github.com>
+Date:   Wed Apr 9 14:21:43 2025 -0700
+
+    Add files via upload
+
+[33mcommit df92b713f7b89cd08745256dc32168a747965d29[m
+Author: BrycesDevices <131553372+BrycesDevices@users.noreply.github.com>
+Date:   Wed Apr 9 14:19:38 2025 -0700
+
+    Update waveGen.sv
+
+[33mcommit 5b136dadab1bcd6e20722b83f61de69eab121ae6[m
+Author: BrycesDevices <131553372+BrycesDevices@users.noreply.github.com>
+Date:   Wed Apr 9 14:18:46 2025 -0700
+
+    Update lfoGenerator.sv
+
+[33mcommit da2d645c931fa22bc0c519a8dee9f83a470f7f4a[m
+Author: BrycesDevices <131553372+BrycesDevices@users.noreply.github.com>
+Date:   Wed Apr 9 14:17:52 2025 -0700
+
+    Update freqGen.sv
+
+[33mcommit 8bde3f9a8318b81eb394efd1700c3bad97df8043[m
+Author: BrycesDevices <131553372+BrycesDevices@users.noreply.github.com>
+Date:   Wed Apr 9 14:17:11 2025 -0700
+
+    Update dacInterface.sv
+
+[33mcommit a0b7bced5051d282393131e13f2b637206cce6ca[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Wed Apr 9 14:13:51 2025 -0700
+
+    removed a bunch of files, added BRYCE folder
+
+[33mcommit fdfb370af8fa0e828700e2bbb3deeefa7b780d25[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Apr 6 19:12:58 2025 -0700
+
+    Add files via upload
+    
+    Upgraded template to work off of
+
+[33mcommit 5d45a97de9737bff8bb644ef5f90cf4ca63c6ed1[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Apr 6 18:24:06 2025 -0700
+
+    Add files via upload
+    
+    TEXT template completed.
+    Written into line 1,2,3,4
+
+[33mcommit f4d7283c2d93e85ea67f6be321b42b59fa0179cb[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Fri Apr 4 15:49:02 2025 -0700
+
+    Add files via upload
+    
+    LCD DISPLAY WORKS. SENDING INDIVIDUAL LETTERS
+
+[33mcommit b8c1b04743b7efe279d328d24d8a7e298a18f839[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Tue Apr 1 23:07:31 2025 -0700
+
+    Made progress
+    
+    We know E works, as initialization commands are coming through.
+    We know we can write commands.
+    We have verified data_pins are correctly plugged in
+    
+    For some reason, the characters are not coming out correctly.
+    Thing to try is potentiometer accross V0
+
+[33mcommit 1b79f10ddbf435e24cfadefadca09e5856d557bd[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Tue Apr 1 20:50:22 2025 -0700
+
+    NEATED UP CODE
+    
+    Removed redundancy, still doesn't work though.
+
+[33mcommit 86cfce9efa9f7a61cd9fc3a6226d85d0b37bfed8[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Tue Apr 1 19:31:29 2025 -0700
+
+    Add files via upload
+    
+    Verified Enable works on oscilliscope, as well as data
+    
+    Assuming data is captured, while Enable is falling edge
+
+[33mcommit 1cdf67755c014c24216bf844a5dddd2b61136fc3[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Tue Apr 1 19:28:55 2025 -0700
+
+    Add files via upload
+    
+    Enable verified working on oscilliscope.
+    Data as well
+
+[33mcommit 44955776beae388d1e42fbfe4f2cf65f86935a18[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Mon Mar 31 11:04:05 2025 -0700
+
+    Add files via upload
+
+[33mcommit c768ef8144465d161e6b0803841468563191c2ff[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 30 21:05:44 2025 -0700
+
+    Add files via upload
+    
+    After some datasheet reviewing
+    
+    RS BIT IS CORRECT. When you start writing char's, RS=1
+    R/W is correct always stays low
+    
+    The only thing that may be different is the display ON_OFF is 0000_1110
+
+[33mcommit 6146fa69f78e41823de7ae6d29df86f70b4e4ba2[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 30 21:04:09 2025 -0700
+
+    Add files via upload
+    
+    After some datasheet reviewing
+    
+    RS BIT IS CORRECT. When you start writing char's, RS=1
+    R/W is correct always stays low
+    
+    The only thing that may be different is the display ON_OFF is DATA = 0000_1110
+
+[33mcommit cbeb4e738a2d25eb6b0ae3973ae4877e34675507[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 30 18:39:41 2025 -0700
+
+    Add files via upload
+    
+    failed first attempt at getting LCD to work, need to recheck datasheet
+
+[33mcommit 9f00576eb8afe7d609db0734c435c46a08f7ddb1[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 30 17:49:01 2025 -0700
+
+    Add files via upload
+    
+    tests work, with E reversed
+
+[33mcommit 4822afda16f40a1cd88a2b6bd44108ddbd5b8f0f[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 30 17:44:21 2025 -0700
+
+    Add files via upload
+    
+    Got E to toggle, however, it was reversed. So we are in process of reverting it with the tests working.
+
+[33mcommit cebace106afcaea05febf3086385b54436175d95[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 23 15:22:00 2025 -0700
+
+    Add files via upload
+
+[33mcommit c477238f5eafd1c4ee0a518b6cbd13f87eda724d[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 23 15:21:43 2025 -0700
+
+    Add files via upload
+
+[33mcommit 5a8cb92961d2573d5609fc22240e8d60ee5121e7[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 23 15:21:28 2025 -0700
+
+    Add files via upload
+
+[33mcommit 3373613a3b107decb49a2eaf9b0037557e6f1669[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 23 15:20:59 2025 -0700
+
+    Add files via upload
+
+[33mcommit 150a95b9c83dc5d4c6dd6f09968e5b48f1f7b558[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sun Mar 23 14:12:41 2025 -0700
+
+    Add files via upload
+    
+    Compiled program. Implemented pseudocode, however did not test with real board yet
+
+[33mcommit 037dc20b9a398165f9537d1cf3c087392df5e0dd[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sat Mar 22 14:35:09 2025 -0700
+
+    Update lcdDisplay.sv
+    
+    first revision of lcdDisplay written.
+    
+    Timing may be a bit overkill between cycles
+    Have not yet tested or compiled this module
+    
+    Pseudocode has been implemented
+
+[33mcommit 696c43c8ae1e01c11a1ec6376237f2f74d7b24d1[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sat Mar 22 13:49:17 2025 -0700
+
+    Add files via upload
+    
+    Implementation plan has been drafted
+
+[33mcommit 5c0bdd8519bb6a17382883d6c93cb738c0faa81b[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sat Mar 22 12:42:21 2025 -0700
+
+    Add files via upload
+    
+    updated LCD driver plan with deeper understanding of LCD chip
+
+[33mcommit 31a49c60352a82fe0ab72ddc732ae7b49b3e8658[m
+Author: BrycesDevices <131553372+BrycesDevices@users.noreply.github.com>
+Date:   Sat Mar 22 11:06:06 2025 -0700
+
+    Add files via upload
+
+[33mcommit ef9d9e22b76a7efaf601109bab1c82049a4cd4ca[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sat Mar 22 10:51:44 2025 -0700
+
+    Add files via upload
+
+[33mcommit 265616c86385bc8ddcf05a31fdfe4b322388e4e1[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sat Mar 22 10:50:28 2025 -0700
+
+    Add files via upload
+
+[33mcommit 4a77ffe8b3efee2209a9960ca994957f7bd91920[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sat Mar 22 10:34:42 2025 -0700
+
+    Add files via upload
+
+[33mcommit a2e5038bc60212bdf53627df413406157746e81d[m
+Author: Parry-Zhuo <165851545+Parry-Zhuo@users.noreply.github.com>
+Date:   Sat Mar 22 10:34:05 2025 -0700
+
+    Initial commit
