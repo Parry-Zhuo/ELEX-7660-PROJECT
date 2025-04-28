@@ -17,3 +17,5 @@ guitar pedal parameters.
 
 • Stomp switch on/off control.
 
+# Authors 
+BRYCE REID & PARRY ZHUO
