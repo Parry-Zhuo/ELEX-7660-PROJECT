@@ -7,12 +7,12 @@
 module lcdDisplay #(
     parameter int MESSAGE_LENGTH = 63
 )(
-    input  logic        CLOCK_50,        // 50 MHz clock
-    input  logic        rst,        // Reset signal, GPIO_0[3]
-    output logic        RS,         // Register Select GPIO_0[4]
-    output logic        RW,         // Read/Write GPIO_0[5]
-    output logic        E,          // Enable signal GPIO_0[6]
-    output logic [7:0]  data,       // Data bus for LCD
+    input  logic        CLOCK_50,       // 50 MHz clock
+    input  logic        rst,        	// Reset signal, GPIO_0[3]
+    output logic        RS,         	// Register Select GPIO_0[4]
+    output logic        RW,         	// Read/Write GPIO_0[5]
+    output logic        E,          	// Enable signal GPIO_0[6]
+    output logic [7:0]  data,       	// Data bus for LCD
     input  logic [1:0]  sel,
     input  logic [2:0]  shape, depth,
     input  logic [7:0]  freq
@@ -20,30 +20,28 @@ module lcdDisplay #(
 
     logic [12:0] count, next_count;
     logic [12:0] write_count;
-	 logic [15:0] clk_div_count ; 						// count used to divide clock
+    logic [15:0] clk_div_count ; 	// count used to divide clock
 	 
 	 
     state_t state, next_state;
 
-	 /*INITIAL MESSAGE*/
-// Line 1 message: "LFO GENERATOR   "
+    /*INITIAL MESSAGE*/
+    // Line 1 message: "LFO GENERATOR   "
     logic [7:0] line1 [0:15] = '{
         8'h4C, 8'h46, 8'h4F, 8'h20, 8'h47, 8'h45, 8'h4E, 8'h45,
         8'h52, 8'h41, 8'h54, 8'h4F, 8'h52, 8'h20, 8'h20, 8'h20
     };
-	 
-// Line 2 message: "> WAVE: SQUARE  "
+    // Line 2 message: "> WAVE: SQUARE  "
     logic [7:0] line2 [0:15] = '{
         8'h20, 8'h20, 8'h57, 8'h41, 8'h56, 8'h45, 8'h3A, 8'h20,
         8'h53, 8'h51, 8'h55, 8'h41, 8'h52, 8'h45, 8'h20, 8'h20
     };
-	 // Line 3 message: "  RATE: 100 BPM "
+    // Line 3 message: "  RATE: 100 BPM "
     logic [7:0] line3 [0:15] = '{
         8'h20, 8'h20, 8'h52, 8'h41, 8'h54, 8'h45, 8'h3A, 8'h20,
         8'h31, 8'h30, 8'h30, 8'h20, 8'h42, 8'h50, 8'h4D, 8'h20
     };
-	 
-// Line 4 message: "  DEPTH: xxx    "
+    // Line 4 message: "  DEPTH: xxx    "
     logic [7:0] line4 [0:15] = '{
         8'h20, 8'h20, 8'h44, 8'h45, 8'h50, 8'h54, 8'h48, 8'h3A,
         8'h3A, 8'hDB, 8'hDB, 8'h20, 8'h20, 8'h20, 8'h20, 8'h20
@@ -81,7 +79,7 @@ module lcdDisplay #(
                 RETURN_HOME:    data <= 8'b0000_0010; // Return home
                 ENTRY_MODE:     data <= 8'b0000_0110; //assign curser moving direction and enable shift of display
                 DISPLAY_ONOFF:  data <= 8'b0000_1100;  //Display ON/OFF 1xxx. display (D), cursor (C), and blinking of cursor (B)  
-                CURSORSHIFT:    data <= 8'b0001_0100; // 0 0 0 1 S/C R/L 0 0 – Shift entire display (S/C=1) or move cursor (S/C=0), direction by R/L (0=left, 1=right) without DDRAM change.
+                CURSORSHIFT:    data <= 8'b0001_0100; // 0 0 0 1 S/C R/L 0 0 ? Shift entire display (S/C=1) or move cursor (S/C=0), direction by R/L (0=left, 1=right) without DDRAM change.
                 FUNCTION_SET:   data <= 8'b0011_1100;  // Set 8-bit, 2-line, 5x10 dots
 
 					
@@ -124,7 +122,7 @@ module lcdDisplay #(
                 JUMP_LINE3:     next_state = WRITE_LINE3;
                 WRITE_LINE3:    next_state = (write_count == 15) ? JUMP_LINE4 : WRITE_LINE3;
                 JUMP_LINE4:     next_state = WRITE_LINE4;
-                WRITE_LINE4:    next_state = (write_count == 15) ? JUMP_LINE1 : WRITE_LINE4;
+                WRITE_LINE4:    next_state = (write_count == 15) ? JUMP_LINE2 : WRITE_LINE4;
                 JUMP_LINE1:     next_state = WRITE_LINE1;
 
                 STOP:           next_state = STOP;
@@ -214,7 +212,7 @@ module lcdDisplay #(
 			// high-mid //
 			3 : line4[8:12] ='{ 8'hDB, 8'hDB, 8'hDB, 8'hDB, 8'h20 } ;
 			// high //
-			3 : line4[8:12] = '{ 8'hDB, 8'hDB, 8'hDB, 8'hDB, 8'hDB } ;
+			4 : line4[8:12] = '{ 8'hDB, 8'hDB, 8'hDB, 8'hDB, 8'hDB } ;
 		endcase
 		case ( freq )
 				default : line3[8:10] = '{ 8'h20, 8'h33, 8'h30 } ; // 30
